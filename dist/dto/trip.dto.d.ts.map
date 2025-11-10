@@ -1,1 +1,0 @@
-{"version":3,"file":"trip.dto.d.ts","sourceRoot":"","sources":["../../src/dto/trip.dto.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAM,2BAA2B,CAAC;AAE3D,qBAAa,oBAAoB;IAGhC,WAAW,EAAG,MAAM,CAAC;IAIrB,YAAY,EAAG,MAAM,CAAC;IAItB,IAAI,EAAG,MAAM,CAAC;IAId,MAAM,EAAG,MAAM,CAAC;IAGhB,UAAU,EAAG,cAAc,CAAC;CAC5B"}
