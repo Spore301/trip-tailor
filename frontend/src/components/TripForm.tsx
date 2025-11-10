@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaGlobe, FaUser, FaCalendar, FaRupeeSign, FaCompass } from 'react-icons/fa';
 import { FaPaperPlane } from 'react-icons/fa6';
 import { tripApi } from '../services/api';
 import { ExperienceTypeValues, type TripRequest } from '../types/trip';
+import { AxiosError } from 'axios';
 
 export default function TripForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<TripRequest>({
     destination: '',
     people_count: 4,
@@ -34,8 +37,15 @@ export default function TripForm() {
         budget: 0,
         experience: ExperienceTypeValues.ADVENTURE,
       });
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to submit trip request. Please try again.');
+      navigate('/mock'); // Navigate to MockPage after successful submission
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message || 'Failed to submit trip request. Please try again.');
+      } else if (err instanceof AxiosError && err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else {
+        setError('Failed to submit trip request. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -179,19 +189,14 @@ export default function TripForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg py-4 px-6"
             >
               {loading ? (
                 'Submitting...'
               ) : (
                 <>
-                <a
-                href="/mock"
-                className="flex py-4 px-6 items-center gap-[10px] w-full h-full justify-center"
-                >
                   <FaPaperPlane className="text-white " />
                   Submit Request
-                </a>
                 </>
               )}
             </button>
