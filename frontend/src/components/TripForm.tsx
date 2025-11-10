@@ -186,7 +186,7 @@ export default function TripForm() {
               ) : (
                 <>
                 <a
-                href="http://localhost:5173/mock"
+                href="/mock"
                 className="flex py-4 px-6 items-center gap-[10px] w-full h-full justify-center"
                 >
                   <FaPaperPlane className="text-white " />
