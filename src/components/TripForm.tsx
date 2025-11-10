@@ -164,7 +164,7 @@ export default function TripForm() {
 
             {/* Error/Success Messages */}
             {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+              <div className="bg-white border border-white text-white ">
                 {error}
               </div>
             )}
@@ -179,14 +179,19 @@ export default function TripForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold py-4 px-6 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
             >
               {loading ? (
                 'Submitting...'
               ) : (
                 <>
-                  <FaPaperPlane className="text-white" />
+                <a
+                href="http://localhost:5173/mock"
+                className="flex py-4 px-6 items-center gap-[10px] w-full h-full justify-center"
+                >
+                  <FaPaperPlane className="text-white " />
                   Submit Request
+                </a>
                 </>
               )}
             </button>
